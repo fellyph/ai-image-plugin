@@ -2,7 +2,8 @@
 /**
  * Plugin Name: Uniform AI Generator
  * Plugin URI: https://github.com/your-username/uniform-ai-generator
- * Description: A WordPress plugin to generate uniform images using AI, requires AI Services plugin.
+ * Description: A WordPress plugin to generate uniform images using AI. 
+ *             Requires AI Services plugin.
  * Version: 1.0.0
  * Author: Your Name
  * Author URI: https://your-website.com
@@ -62,13 +63,19 @@ function Uniform_Ai_Generator_Dependency_notice() {
 
 // Initialize plugin only if dependencies are met
 if (Uniform_Ai_Generator_Check_dependencies()) {
-    require_once UNIFORM_AI_GENERATOR_PLUGIN_DIR . 'includes/class-uniform-ai-generator.php';
-    require_once UNIFORM_AI_GENERATOR_PLUGIN_DIR . 'includes/class-uniform-ai-generator-admin.php';
+    include_once UNIFORM_AI_GENERATOR_PLUGIN_DIR . 
+        'includes/class-uniform-ai-generator.php';
+    include_once UNIFORM_AI_GENERATOR_PLUGIN_DIR . 
+        'includes/class-uniform-ai-generator-admin.php';
     
-    // Initialize the plugin
-    function uniform_ai_generator_init() {
+    /**
+     * Initialize the plugin
+     *
+     * @return void
+     */
+    function Uniform_Ai_Generator_init() {
         $plugin = new Uniform_AI_Generator();
         $plugin->init();
     }
-    add_action('plugins_loaded', 'uniform_ai_generator_init');
+    add_action('plugins_loaded', 'Uniform_Ai_Generator_init');
 } 
