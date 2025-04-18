@@ -1,0 +1,76 @@
+.uniform-ai-generator-container {
+  max-width: 1200px;
+  margin: 20px 0;
+}
+
+.uniform-ai-generator-form {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ccd0d4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.logo-upload-container {
+  margin-top: 10px;
+}
+
+#logo-preview {
+  margin-top: 10px;
+}
+
+#logo-preview img {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.uniform-ai-generator-loading {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.uniform-ai-generator-loading .spinner {
+  float: none;
+  margin: 0 auto 10px;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.generated-image {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ccd0d4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.generated-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.image-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+select {
+  width: 100%;
+  max-width: 400px;
+}
