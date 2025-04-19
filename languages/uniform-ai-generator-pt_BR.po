@@ -1,0 +1,121 @@
+# Copyright (C) 2025 Your Name
+# This file is distributed under the same license as the Uniform AI Generator plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Uniform AI Generator 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/image-plugin\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Português do Brasil <contato@seusite.com>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-04-18T18:31:14+00:00\n"
+"PO-Revision-Date: 2025-04-18 18:31-0300\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: uniform-ai-generator\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Plugin Name of the plugin
+msgid "Uniform AI Generator"
+msgstr "Gerador de Uniformes com IA"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/your-username/uniform-ai-generator"
+msgstr "https://github.com/your-username/uniform-ai-generator"
+
+#. Description of the plugin
+msgid "A WordPress plugin to generate uniform images using AI."
+msgstr "Um plugin WordPress para gerar imagens de uniformes usando Inteligência Artificial."
+
+#. Author of the plugin
+msgid "Your Name"
+msgstr "Seu Nome"
+
+#. Author URI of the plugin
+msgid "https://your-website.com"
+msgstr "https://seusite.com"
+
+#: admin/templates/admin-page.php:17
+msgid "Generate Uniform Images"
+msgstr "Gerar Imagens de Uniformes"
+
+#: admin/templates/admin-page.php:23
+msgid "Upload Logo"
+msgstr "Enviar Logo"
+
+#: admin/templates/admin-page.php:27
+msgid "Choose Logo"
+msgstr "Escolher Logo"
+
+#: admin/templates/admin-page.php:36
+msgid "Model Gender"
+msgstr "Gênero do Modelo"
+
+#: admin/templates/admin-page.php:40
+msgid "Select Gender"
+msgstr "Selecionar Gênero"
+
+#: admin/templates/admin-page.php:43
+msgid "Male"
+msgstr "Masculino"
+
+#: admin/templates/admin-page.php:46
+msgid "Female"
+msgstr "Feminino"
+
+#: admin/templates/admin-page.php:53
+msgid "Model outfit"
+msgstr "País do Modelo"
+
+#: admin/templates/admin-page.php:57
+msgid "Select outfit"
+msgstr "Selecionar País"
+
+#: admin/templates/admin-page.php:61
+msgid "United States"
+msgstr "Estados Unidos"
+
+#: admin/templates/admin-page.php:66
+msgid "United Kingdom"
+msgstr "Reino Unido"
+
+#: admin/templates/admin-page.php:70
+msgid "Canada"
+msgstr "Canadá"
+
+#: admin/templates/admin-page.php:73
+msgid "Australia"
+msgstr "Austrália"
+
+#: admin/templates/admin-page.php:76
+msgid "Brazil"
+msgstr "Brasil"
+
+#: admin/templates/admin-page.php:86
+msgid "Generate Images"
+msgstr "Gerar Imagens"
+
+#: admin/templates/admin-page.php:93
+msgid "Generated Images"
+msgstr "Imagens Geradas"
+
+#: admin/templates/admin-page.php:99
+msgid "Generating images..."
+msgstr "Gerando imagens..."
+
+#: admin/templates/admin-page.php:106
+msgid "Generated Uniform"
+msgstr "Uniforme Gerado"
+
+#: admin/templates/admin-page.php:109
+msgid "Save to Media Library"
+msgstr "Salvar na Biblioteca de Mídia"
+
+#: admin/templates/admin-page.php:112
+msgid "Download"
+msgstr "Baixar"
+
+#: uniform-ai-generator.php:59
+msgid "Uniform AI Generator requires the AI Services plugin to be installed and activated."
+msgstr "O Gerador de Uniformes com IA requer que o plugin AI Services esteja instalado e ativado."
