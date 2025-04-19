@@ -26,9 +26,28 @@ jQuery(document).ready(function($) {
     $('#uniform-ai-generator-form').on('submit', function(e) {
         e.preventDefault();
 
+        var $form = $(this);
         var $results = $('.uniform-ai-generator-results');
         var $loading = $('.uniform-ai-generator-loading');
         var $generatedImages = $('#generated-images');
+
+        // Validate form data
+        var logo_url = $('#logo-url').val();
+        var gender = $('#gender').val();
+        var outfit = $('#outfit').val();
+
+        if (!logo_url) {
+            alert('Please upload a logo first');
+            return;
+        }
+        if (!gender) {
+            alert('Please select a gender');
+            return;
+        }
+        if (!outfit) {
+            alert('Please select an outfit');
+            return;
+        }
 
         // Show loading
         $loading.show();
@@ -41,9 +60,9 @@ jQuery(document).ready(function($) {
             data: {
                 action: 'generateUniformImage',
                 nonce: uniformAiGenerator.nonce,
-                logo_url: $('#logo-url').val(),
-                gender: $('#gender').val(),
-                outfit: $('#outfit').val()
+                logo_url: logo_url,
+                gender: gender,
+                outfit: outfit
             },
             beforeSend: function() {
                 console.log('Sending request with data:', this.data);
@@ -66,8 +85,8 @@ jQuery(document).ready(function($) {
 
                     $results.fadeIn();
                 } else {
-                    const errorMessage = response.data?.error || uniformAiGenerator.i18n.error;
                     console.error('Error in response:', response);
+                    const errorMessage = response.data?.error || uniformAiGenerator.i18n.error;
                     alert(errorMessage);
                 }
             },
@@ -85,7 +104,10 @@ jQuery(document).ready(function($) {
                     const response = JSON.parse(jqXHR.responseText);
                     if (response.data && response.data.error_details) {
                         console.error('Detailed error:', response.data.error_details);
-                        errorMessage = `Error: ${response.data.error_details.message}\nFile: ${response.data.error_details.file}\nLine: ${response.data.error_details.line}`;
+                        errorMessage = `Error: ${response.data.error_details.message}\n` +
+                            `File: ${response.data.error_details.file}\n` +
+                            `Line: ${response.data.error_details.line}\n` +
+                            `Trace: ${response.data.error_details.trace}`;
                     }
                 } catch (e) {
                     console.error('Error parsing response:', e);

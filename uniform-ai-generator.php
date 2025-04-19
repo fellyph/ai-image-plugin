@@ -42,6 +42,7 @@ define('UNIFORM_AI_GENERATOR_PLUGIN_URL', plugin_dir_url(__FILE__));
  */
 function Uniform_Ai_Generator_Check_dependencies() {
     if (!function_exists('ai_services')) {
+        error_log('AI Services function not found');
         add_action('admin_notices', 'Uniform_Ai_Generator_Dependency_notice');
         return false;
     }
@@ -61,6 +62,32 @@ function Uniform_Ai_Generator_Dependency_notice() {
     <?php
 }
 
+function Uniform_Ai_Generator_Check_service() {
+    try {
+        $service = ai_services()->get_available_service(
+            array('capabilities' => array(
+                Felix_Arntz\AI_Services\Services\API\Enums\AI_Capability::IMAGE_GENERATION
+            ))
+        );
+        if (!$service) {
+            error_log('No AI service available with image generation capability');
+            add_action('admin_notices', function() {
+                ?>
+                <div class="notice notice-error">
+                    <p><?php _e('Uniform AI Generator requires an AI service with image generation capability.', 'uniform-ai-generator'); ?></p>
+                </div>
+                <?php
+            });
+            return false;
+        }
+        error_log('AI Services initialized successfully');
+        return true;
+    } catch (Exception $e) {
+        error_log('Error initializing AI Services: ' . $e->getMessage());
+        return false;
+    }
+}
+
 // Initialize plugin only if dependencies are met
 if (Uniform_Ai_Generator_Check_dependencies()) {
     include_once UNIFORM_AI_GENERATOR_PLUGIN_DIR . 
@@ -74,6 +101,9 @@ if (Uniform_Ai_Generator_Check_dependencies()) {
      * @return void
      */
     function Uniform_Ai_Generator_init() {
+        // Check service availability after WordPress is fully loaded
+        add_action('admin_init', 'Uniform_Ai_Generator_Check_service');
+        
         $plugin = new Uniform_AI_Generator();
         $plugin->init();
     }

@@ -15,7 +15,7 @@ use Felix_Arntz\AI_Services\Services\API\Enums\Content_Role;
 use Felix_Arntz\AI_Services\Services\API\Types\Content;
 use Felix_Arntz\AI_Services\Services\API\Types\Parts;
 use Felix_Arntz\AI_Services\Services\API\Types\Parts\Inline_Data_Part;
-use Felix_Arntz\AI_Services\Services\API\Types\Image_Generation_Config;
+use Felix_Arntz\AI_Services\Services\API\Types\Text_Generation_Config;
 
 /**
  * Main plugin class
@@ -98,9 +98,14 @@ class Uniform_AI_Generator
             }
 
             // Verify the logo file exists and is accessible
-            $logo_headers = get_headers($logo_url, 1);
+            $logo_headers = get_headers($logo_url, true);
             if (!$logo_headers || strpos($logo_headers[0], '200') === false) {
                 throw new Exception('Unable to access logo file: ' . $logo_url);
+            }
+
+            // Wait for WordPress to be fully loaded
+            if (!did_action('admin_init')) {
+                throw new Exception('WordPress is not fully initialized yet');
             }
 
             try {
@@ -130,8 +135,7 @@ class Uniform_AI_Generator
             try {
                 $parts = new Parts();
                 $parts->add_text_part($prompt);
-                $parts->add_file_part('image/jpg', $logo_url);
-                print_r($logo_url);
+                $parts->add_file_data_part('image/png,image/jpg,image/jpeg', $logo_url);
                 $content = new Content(Content_Role::USER, $parts);
             } catch (Exception $e) {
                 throw new Exception(
@@ -143,19 +147,14 @@ class Uniform_AI_Generator
                 $candidates = $service
                     ->get_model(
                         array(
-                            'feature' => 'uniform-ai-generator',
+                            'feature'      => 'uniform-ai-generator',
                             'capabilities' => array(
-                                AI_Capability::IMAGE_GENERATION
-                            ),
-                            'generationConfig' => 
-                                Image_Generation_Config::from_array(
-                                    array(
-                                        'candidateCount' => 3
-                                    )
-                                )
+                                AI_Capability::MULTIMODAL_INPUT,
+                                AI_Capability::TEXT_GENERATION,
+                            )
                         )
                     )
-                    ->generate_image($content);
+                    ->generate_text($content);
             } catch (Exception $e) {
                 throw new Exception('Failed to generate image: ' . $e->getMessage());
             }
