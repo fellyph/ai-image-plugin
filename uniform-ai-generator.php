@@ -66,7 +66,7 @@ if (Uniform_Ai_Generator_Check_dependencies()) {
     include_once UNIFORM_AI_GENERATOR_PLUGIN_DIR . 
         'includes/class-uniform-ai-generator.php';
     include_once UNIFORM_AI_GENERATOR_PLUGIN_DIR . 
-        'includes/class-uniform-ai-generator-admin.php';
+        'admin/class-uniform-ai-generator-admin.php';
     
     /**
      * Initialize the plugin
